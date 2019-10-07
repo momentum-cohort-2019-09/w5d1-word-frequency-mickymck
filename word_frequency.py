@@ -9,6 +9,9 @@ def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
     pass
 
+with open ("seneca_falls.txt") as file:
+    print(file.read())
+
 
 if __name__ == "__main__":
     import argparse

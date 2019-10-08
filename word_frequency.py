@@ -14,18 +14,21 @@ def remove_punctuation(text):
             word_list = text.split()
             return word_list
 
-def remove_stop_words(array):
-    for word in array:
-        if word in STOP_WORDS:
-            array.remove(word)
-            return array
+def remove_stop_words(list):
+    unstopped = []
+    for word in list:
+        if word not in STOP_WORDS:
+            unstopped.append(word)
+    return unstopped
 
 def count(words):
+    word_count = {}
     for word in words:
-        x = 0
-        word_count = {word : x}
-        word_count[word] = {x+=1}
-        print(word_count)
+        if word in word_count:
+            word_count[word] +=1
+        else:
+            word_count[word] = 1
+    return word_count
 
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
@@ -35,7 +38,8 @@ def print_word_freq(file):
         lowercase = text.lower()
         unpunctuated = remove_punctuation(lowercase)
         nonstop = remove_stop_words(unpunctuated)
-        count_list = count(nonstop)
+        counted_words = count(nonstop)
+        print(counted_words)
 
 print_word_freq('seneca_falls.txt')
 # print_word_freq('emancipation_proclamation.txt')

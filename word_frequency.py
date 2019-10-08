@@ -20,13 +20,12 @@ def remove_stop_words(array):
             array.remove(word)
             return array
 
-# def count(words):
-#     word_count_list = []
-#     for word in words:
-#         if word not in word_count_list:
-#             word_count_list.append(word, 1)
-#         else:
-#             word_count_list.
+def count(words):
+    for word in words:
+        x = 0
+        word_count = {word : x}
+        word_count[word] = {x+=1}
+        print(word_count)
 
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
@@ -36,11 +35,10 @@ def print_word_freq(file):
         lowercase = text.lower()
         unpunctuated = remove_punctuation(lowercase)
         nonstop = remove_stop_words(unpunctuated)
-        print(nonstop)
-
-
+        count_list = count(nonstop)
 
 print_word_freq('seneca_falls.txt')
+# print_word_freq('emancipation_proclamation.txt')
 
 if __name__ == "__main__":
     import argparse

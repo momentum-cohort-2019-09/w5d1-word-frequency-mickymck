@@ -7,19 +7,26 @@ STOP_WORDS = [
     'will', 'with'
 ]
 
-def remove_stop_words(text):
-    final_word_list = []
-    for word in text:
-        if word not in STOP_WORDS:
-            final_word_list.append(word)
-            print(final_word_list)
-
 def remove_punctuation(text):
     for character in text:
-        if character in string.punctuation:
-            text = text.replace(character, "")
+        if character in string.punctuation or character is '--':
+            text = text.replace(character, '')
             word_list = text.split()
             return word_list
+
+def remove_stop_words(array):
+    for word in array:
+        if word in STOP_WORDS:
+            array.remove(word)
+            return array
+
+# def count(words):
+#     word_count_list = []
+#     for word in words:
+#         if word not in word_count_list:
+#             word_count_list.append(word, 1)
+#         else:
+#             word_count_list.
 
 def print_word_freq(file):
     """Read in `file` and print out the frequency of words in that file."""
@@ -27,13 +34,13 @@ def print_word_freq(file):
     with open (file) as file:
         text = file.read()
         lowercase = text.lower()
-        # list_items = lowercase.split()
         unpunctuated = remove_punctuation(lowercase)
-        remove_stop_words(unpunctuated)
+        nonstop = remove_stop_words(unpunctuated)
+        print(nonstop)
 
 
 
-print_word_freq("seneca_falls.txt")
+print_word_freq('seneca_falls.txt')
 
 if __name__ == "__main__":
     import argparse
